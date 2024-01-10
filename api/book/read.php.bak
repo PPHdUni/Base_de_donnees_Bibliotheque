@@ -1,0 +1,56 @@
+<?php
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json; charset=UTF-8");
+
+// $books_array=array();
+
+// $book_item=array(
+            // "id" => 1,
+            // "nameBook" => "Maria Chapdelaine",
+            // "nameAuthor" => "Louis Hémon",
+            // "year" => 1916
+        // );
+ 
+// array_push($books_array, $book_item);
+	
+// echo json_encode($books_array);
+ 
+include_once '../config/database.php';
+include_once '../objects/book.php';
+
+$database = new Database();
+$db = $database->getConnection();
+ 
+$book = new Book($db);
+ 
+$stmt = $book->read();
+$num = $stmt->rowCount();
+
+$books_array=array();
+ 
+if($num>0){
+ 
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+        
+		extract($row);
+ 
+        $book_item=array(
+            "id" => $id,
+            "nameBook" => $nameBook,
+            "nameAuthor" => $nameAuthor,
+            "year" => $year
+        );
+ 
+        array_push($books_array, $book_item);
+    }
+ 
+    echo json_encode($books_array);
+}
+ 
+else{
+	
+    echo json_encode(
+       array("message" => "No products found.")
+    );
+}
+?>

@@ -1,10 +1,9 @@
 $(document).ready(function(){
  
-    data = initBookList();
-	showBookList(data)
-    
+	showBookAjax()
+ 
     $(document).on('click', '.book-list-button', function(){
-	showBookList(data)
+		showBookAjax()
     });
 
     
@@ -21,6 +20,24 @@ function initBookList(){
 	
 	return book_list
 };
+
+function showBookAjax() {
+
+	$.ajax({
+			dataType: "json",
+			url: "../api/book/read.php",
+			type: "GET",
+			data: null,
+			success: function(data) {
+				showBookList(data)
+			},
+			error: function(data, textStatus, error) {
+				console.error("getJSON failed, status: " + textStatus + ", error: "+error)
+				$("#page-content").html(JSON.stringify(data))
+			}
+		});
+	
+}
 
 function showBookList(data){
  

@@ -1,7 +1,25 @@
 $(document).ready(function(){
  
-    data = initBookList();
-	showBookList(data)
+    //data = initBookList();
+	//showBookList(data)
+	$("#page-content").html("Allo")
+	
+	$.ajax({
+                dataType: "json",
+                url: "../api/book/read.php",
+                type: "GET",
+                data: null,
+                success: function(data) {
+					showBookList(data)
+				},
+                error: function(data, textStatus, error) {
+					console.error("getJSON failed, status: " + textStatus + ", error: "+error)
+					$("#page-content").html(JSON.stringify(data))
+				}
+            });
+
+	
+	//$("#page-content").html("Hi")
     
     $(document).on('click', '.book-list-button', function(){
 	showBookList(data)
@@ -38,8 +56,8 @@ function showBookList(data){
 	   
 		book_list_html+="<tr>";
 	
-		book_list_html+="<td>" + book.nameBook + "</td>";
-        book_list_html+="<td>" + book.nameAuthor + "</td>";
+		book_list_html+="<td>" + book.nameBook + " </td>";
+        book_list_html+="<td>" + book.nameAuthor + " </td>";
         book_list_html+="<td>" + book.year + "</td>";
 		
 		book_list_html+="</tr>";
