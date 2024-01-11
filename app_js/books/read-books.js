@@ -25,7 +25,7 @@ function showBookAjax() {
 
 	$.ajax({
 			dataType: "json",
-			url: "../api/book/read.php",
+			url: "/Base_de_donnees_Bibliotheque/api/book/read.php",
 			type: "GET",
 			data: null,
 			success: function(data) {
@@ -43,7 +43,7 @@ function showBookList(data){
  
    var book_list_html="";
    
-   book_list_html+="<table>";
+   book_list_html+="<table class='table table-bordered table-hover'>";
    
    book_list_html+="<tr>";
    book_list_html+="<th>Titre</th>";
