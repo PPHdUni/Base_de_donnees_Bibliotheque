@@ -3,7 +3,7 @@
 <head>
 <title>Projet Base_de_donnees_Bibliotheque</title>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
@@ -11,22 +11,45 @@
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
         <script src="lib/js/sammy.js" type="text/javascript" charset="utf-8"></script>
         <script src="https://d3js.org/d3.v7.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
 
-	<div id='page-header'>
-		<nav class="navbar navbar-dark bg-primary justify-content-between" id='page-header'>
-            <h1 class='text-white' >Recueil de la bibliotheque de l'école</h1>
+	<div class="bg-primary justify-content-center" id='page-header'>
+	
+		<h1 class="text-white text-center">Recueil de la bibliotheque de l'école</h1>
+		
+		<div class="container-fluid row justify-content-center" style="border-top-style: solid; border-top-color:white;">		
+		<nav class="navbar navbar-expand-lg">
+			<ul class="nav navbar-nav">
+			<li class="nav-item"><a class="text-white nav-link book-list-button" href="#">Livres</a></li>
+			<li class="nav-item"><a class="text-white nav-link student-list-button" href="#">Étudiants</a></li>
+			<li class="nav-item"><a class="text-white nav-link loan-list-button" href="#">Locations</a></li>
+			</ul>
+		</nav>
+		</div>
             
-        </nav>
 	</div>
 	
-	<div id='page-content'>
+	<div class="justify-content-center" id='page-content'>
 	
 	
 	
 	</div>
+	
+	<script src="app_js/books/read-books.js"></script>
 	
 </body>
 </html>
+<style>
+.nav-item {
+	display: block;
+    padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+#page-content {
+	padding-top: 0.5rem;
+}
+</style>

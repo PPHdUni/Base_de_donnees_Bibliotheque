@@ -9,18 +9,6 @@ $(document).ready(function(){
     
 });
 
-function initBookList(){
- 
-    const book_list = []
-	book_list.push({"nameBook":"Maria Chapdelaine", "nameAuthor":"Louis Hémon", "year":1916})
-	book_list.push({"nameBook":"Un homme et son péché", "nameAuthor":"Claude-Henri Grignon", "year":1933})
-	book_list.push({"nameBook":"Kamouraska", "nameAuthor":"Anne Hébert", "year":1970})
-	book_list.push({"nameBook":"Kukum", "nameAuthor":"Michel Jean", "year":2019})
-	book_list.push({"nameBook":"Le Survenant", "nameAuthor":"Germaine Guèvremont", "year":1945})
-	
-	return book_list
-};
-
 function showBookAjax() {
 
 	$.ajax({
@@ -43,14 +31,17 @@ function showBookList(data){
  
    var book_list_html="";
    
-   book_list_html+="<table class='table table-bordered table-hover'>";
+   book_list_html+="<table id='content-table' class='table-bordered'>";
    
+   book_list_html+="<thead>";
    book_list_html+="<tr>";
    book_list_html+="<th>Titre</th>";
    book_list_html+="<th>Auteur</th>";
    book_list_html+="<th>Année</th>";
    book_list_html+="</tr>";
+   book_list_html+="</thead>";
    
+   book_list_html+="<tbody>";
    $.each(data, function(index, book) {
 	   
 		book_list_html+="<tr>";
@@ -62,9 +53,18 @@ function showBookList(data){
 		book_list_html+="</tr>";
 	   
    });
+   book_list_html+="</tbody>";
    
    book_list_html+="</table>";
    
    $("#page-content").html(book_list_html);
+   
+   let data_table = new DataTable('#content-table');
+   
+   var add_button_html="<div class='d-flex justify-content-center'>";
+   add_button_html+="<button class='btn bg-primary text-white add-book-button' >Ajouter</button>";
+   add_button_html+="</div>";
+   
+   $("#page-content").append(add_button_html);
    
 };
