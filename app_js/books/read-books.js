@@ -38,6 +38,7 @@ function showBookList(data){
    book_list_html+="<th>Titre</th>";
    book_list_html+="<th>Auteur</th>";
    book_list_html+="<th>Année</th>";
+   book_list_html+="<th>Enlever</th>";
    book_list_html+="</tr>";
    book_list_html+="</thead>";
    
@@ -49,6 +50,7 @@ function showBookList(data){
 		book_list_html+="<td>" + book.nameBook + " </td>";
         book_list_html+="<td>" + book.nameAuthor + " </td>";
         book_list_html+="<td>" + book.year + "</td>";
+		book_list_html+="<td><button class='btn btn-danger delete-book-button' data-id='" + book.nBook + "'>-</button></td>";
 		
 		book_list_html+="</tr>";
 	   
