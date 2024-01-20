@@ -6,6 +6,7 @@ header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
  
+ 
 include_once '../config/database.php';
 include_once '../objects/book.php';
  
@@ -16,20 +17,17 @@ $book = new Book($db);
  
 $data = json_decode(file_get_contents("Php://input"));
  
-$book->nameBook = $data->titre;
-$book->nameAuthor = $data->auteur;
-$book->year = $data->année;
+$book->nBook = $data->nBook;
  
-if($book->create()){
+if($book->delete()){
     echo '{';
-        echo '"message": "Le livre est créé."';
+        echo '"message": "Le livre a été effacé."';
     echo '}';
 }
  
 else{
     echo '{';
-        echo '"message": "Incapable de créé le livre."';
+        echo '"message": "Incapable d effacer le livre."';
     echo '}';
 }
-
 ?>

@@ -51,12 +51,12 @@ function deleteBookAjax(book_id){
 	$.ajax({
 			url: "/Base_de_donnees_Bibliotheque/api/book/delete.php",
 			type : "POST",
-			dataType : 'application/json',
+			dataType : 'json',
 			data : JSON.stringify({ nBook: book_id }),
 			success : function(data) {
 			    showBookAjax()
 			},
-			error: function(xhr, resp, text) {
+			error: function(data, textStatus, error) {
 			    console.error("getJSON failed, status: " + textStatus + ", error: "+error)
 			}
 		});

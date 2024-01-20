@@ -11,12 +11,10 @@ class Book{
     public $nameAuthor;
     public $year;
  
-    // constructor with $db as database connection
     public function __construct($db){
         $this->conn = $db;
     }
 
-    // read products
     function read(){
  
       // select all query
@@ -54,6 +52,30 @@ class Book{
       $stmt->bindParam(":nameBook", $this->nameBook);
       $stmt->bindParam(":nameAuthor", $this->nameAuthor);
       $stmt->bindParam(":year", $this->year);
+      
+      // execute query
+      if($stmt->execute()){
+        return true;
+      }
+      
+      return false;
+      
+    }
+	
+	// delete the book
+    function delete(){
+ 
+      // delete query
+      $query = "DELETE FROM " . $this->table_name . " WHERE nBook = ?";
+      
+      // prepare query
+      $stmt = $this->conn->prepare($query);
+      
+      // sanitize
+      $this->nBook=htmlspecialchars(strip_tags($this->nBook));
+      
+      // bind nBook of book to delete
+      $stmt->bindParam(1, $this->nBook);
       
       // execute query
       if($stmt->execute()){
