@@ -9,8 +9,10 @@ $(document).ready(function(){
 	$(document).on('submit', '#create-book-form', function(){
 		
 		var form_data=JSON.stringify($(this).serializeObject());
+		
 		createBookAjax(form_data);
 		
+		return false;
 	});
     
 });
@@ -60,12 +62,28 @@ function createBookAjax(form_data) {
 			contentType : "application/json",
 			data: form_data,
 			success: function(data) {
-				showBookList(data)
+				showBookAjax()
 			},
 			error: function(data, textStatus, error) {
 				console.error("getJSON failed, status: " + textStatus + ", error: "+error)
-				$("#page-content").html(JSON.stringify(data))
 			}
 		});
 	
 }
+
+$.fn.serializeObject = function() { 
+            var o = {};
+            var a = this.serializeArray(); 
+            $.each(a, function() {
+                if (o[this.name] !== undefined) { 
+                    if (!o[this.name].push) {
+                        o[this.name] = [o[this.name]]; 
+                    }
+                    o[this.name].push(this.value || ''); 
+                } 
+                else {
+                    o[this.name] = this.value || ''; 
+                }
+            });
+            return o; 
+        };
