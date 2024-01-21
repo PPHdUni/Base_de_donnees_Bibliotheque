@@ -1,35 +1,33 @@
-begin transaction;
-DROP SCHEMA IF EXISTS library_project CASCADE;
-create schema library_project;
-set search_path to library_project;
+START TRANSACTION;
 
-create domain year_bk_num as integer
- check (value <= 2023);
+CREATE TABLE `books` (
+  `nBook` bigint(20) UNSIGNED NOT NULL,
+  `nameBook` text NOT NULL,
+  `nameAuthor` text NOT NULL,
+  `year` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-create domain year_stud_num as integer
- check (value >= 1) and (value <= 6);
+ALTER TABLE `books`
+  ADD PRIMARY KEY (`nBook`),
+  ADD UNIQUE KEY `nBook` (`nBook`);
 
-create table book (
-  nBook serial primary key,
-  nameBook text not null,
-  nameAuthor text not null,
-  year year_bk_num
-);
+ALTER TABLE `books`
+  MODIFY `nBook` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
-create table student (
-  nStudent serial primary key,
-  fnameStudent text not null,
-  lnameStudent text not null,
-  year year_stud_num
-);
+-- create table student (
+--   nStudent serial primary key,
+--   fnameStudent text not null,
+--   lnameStudent text not null,
+--   year year_stud_num
+-- );
 
-create table rental (
-  nRental serial primary key,
-  nBk integer,
-  nStud integer,
-  end_date text not null,
-  foreign key (nBk) references book(nBook),
-  foreign key (nStud) references student(nStudent)
-);
+-- create table rental (
+--   nRental serial primary key,
+--   nBk integer,
+--   nStud integer,
+--   end_date text not null,
+--   foreign key (nBk) references book(nBook),
+--   foreign key (nStud) references student(nStudent)
+-- );
 
-commit;
+COMMIT;
