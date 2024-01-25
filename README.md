@@ -1,4 +1,6 @@
- Une application qui affiche une liste de livres se trouvant dans la base de 
+# Base de données pour bibliothèque
+
+Une application qui affiche une liste de livres se trouvant dans la base de 
 données d’une bibliothèque. Elle offre aussi la possibilité d’ajouter et de retirer des livres de la 
 liste. L’application est composée d’une page HTML ainsi que plusieurs fichiers Javascript et 
 PHP. À l’aide de Ajax, les fichiers Javascript envoi des requêtes aux fichiers PHP qui, par la 
